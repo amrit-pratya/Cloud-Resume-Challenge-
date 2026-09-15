@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write   # Required for requesting the OIDC JWT from GitHub
-  contents: read    # Required to check out code
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
@@ -17,6 +17,13 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Debug OIDC Token Claims
+        run: |
+          TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+          # Decode and print JWT header and payload (no private secrets exposed)
+          echo "=== JWT PAYLOAD ==="
+          echo $TOKEN | jq -R 'split(".") | .[1] | @base64d | fromjson'
 
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
