@@ -15,6 +15,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Run Unit Tests
+        env:
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: testing
+          AWS_SECRET_ACCESS_KEY: testing
         run: |
           pip install pytest boto3 moto
           export PYTHONPATH=.
