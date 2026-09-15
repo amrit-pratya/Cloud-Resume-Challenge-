@@ -1,11 +1,19 @@
-import importlib
 import os
+
+# Set dummy AWS credentials and default region before importing boto3/app
+os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+os.environ["AWS_SECURITY_TOKEN"] = "testing"
+os.environ["AWS_SESSION_TOKEN"] = "testing"
+os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
+os.environ["TABLE_NAME"] = "test-resume-stats"
+
+import importlib
 import boto3
 from moto import mock_aws
 
 @mock_aws
 def test_lambda_handler():
-    os.environ["TABLE_NAME"] = "test-resume-stats"
     dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
 
     dynamodb.create_table(

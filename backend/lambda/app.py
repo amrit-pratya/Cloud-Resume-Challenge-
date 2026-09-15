@@ -2,8 +2,10 @@ import json
 import os
 import boto3
 
-dynamodb = boto3.resource("dynamodb")
+REGION = os.environ.get("AWS_REGION", "us-east-1")
 TABLE_NAME = os.environ.get("TABLE_NAME", "cloud-resume-stats")
+
+dynamodb = boto3.resource("dynamodb", region_name=REGION)
 table = dynamodb.Table(TABLE_NAME)
 
 def lambda_handler(event, context):
