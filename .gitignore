@@ -1,0 +1,61 @@
+# --- Terraform Artifacts & Local State ---
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# --- Terraform Lock File (Ignore if solo/personal, optional) ---
+# .terraform.lock.hcl
+
+# --- Build & Archive Artifacts ---
+*.zip
+lambda.zip
+
+# --- Python & Testing Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+
+# --- Virtual Environments ---
+venv/
+env/
+.env
+.venv/
+ENV/
+
+# --- OS & Editor Specific Files ---
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# --- Secrets & Credentials Guardrail ---
+secrets.tfvars
+*.pem
+*.key
+aws-creds.json
+
+
+
+.txt
