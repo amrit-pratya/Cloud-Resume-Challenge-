@@ -5,24 +5,26 @@ on:
     branches: [ main ]
     paths:
       - 'frontend/**'
+  workflow_dispatch:
 
 permissions:
-  id-token: write
-  contents: read
+  id-token: write   # Required for requesting the OIDC JWT from GitHub
+  contents: read    # Required to check out code
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Authenticate with AWS via OIDC
+      - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Sync static files to S3
+      - name: Sync Static Files to S3
         run: |
           aws s3 sync ./frontend s3://${{ secrets.S3_BUCKET_NAME }} --delete
 
