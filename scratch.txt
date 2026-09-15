@@ -2,7 +2,7 @@ Apply complete! Resources: 20 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-api_endpoint = "https://.................execute-api.us-east-1.amazonaws.com/visitors"
+api_endpoint = "https://.................execute-..............................................amazonaws.com/................"
 cloudfront_distribution_id = "..................."
 cloudfront_domain_name = "....................cloudfront.net"
 github_actions_role_arn = "...:...:...::...................:role/github-actions-cloud-resume"
