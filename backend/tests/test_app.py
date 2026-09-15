@@ -16,7 +16,7 @@ def test_lambda_handler():
       BillingMode="PAY_PER_REQUEST",
   )
 
-  # Import inside the test function so it runs within the @mock_aws context
+  # Import dynamically inside the function to keep it within mock_aws context
   app = importlib.import_module("backend.lambda.app")
   lambda_handler = app.lambda_handler
 
